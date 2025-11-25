@@ -1,0 +1,229 @@
+/* East Way Solution — static landing stylesheet
+   Colors, typography and layout per user's specification.
+*/
+
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Open+Sans:wght@400;600&display=swap');
+
+:root{
+  --action-green: #28A745;
+  --urgency-red: #DC3545;
+  --white: #FFFFFF;
+  --text-black: #212529;
+  --muted: #6C757D;
+  --section-bg: #F8F9FA;
+  --highlight-yellow: #FFC107;
+  --trust-blue: #007BFF;
+  --warning-orange: #FF6B35;
+}
+
+/* Base */
+*{box-sizing:border-box}
+body{margin:0;font-family:"Open Sans", Arial, sans-serif;color:var(--text-black);line-height:1.6;background:var(--white);-webkit-font-smoothing:antialiased}
+.container{max-width:1200px;margin:0 auto;padding:0 16px}
+
+/* Sticky header */
+.sticky-header{position:fixed;top:0;left:0;right:0;height:64px;background:var(--white);box-shadow:0 2px 8px rgba(0,0,0,0.08);z-index:9999}
+.header-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-family:"Montserrat",sans-serif;font-weight:700;font-size:18px;display:flex;align-items:center;gap:8px}
+.mini-timer{font-family:"Montserrat",sans-serif;font-weight:700;color:var(--urgency-red)}
+.header-actions .cta-btn{background:var(--action-green);color:#fff;padding:10px 16px;border-radius:8px;text-transform:uppercase;font-weight:700;letter-spacing:0.6px;box-shadow:0 6px 18px rgba(40,167,69,0.12);}
+
+/* Hero */
+.hero{margin-top:80px;padding:60px 0;background:linear-gradient(135deg, #667eea 0%, #764ba2 100%);color:#fff}
+.hero-inner{display:flex;gap:40px;align-items:center}
+.hero-left{flex:1}
+.hero-right{flex:1;text-align:center}
+.hero h1{font-family:"Montserrat",sans-serif;font-size:44px;line-height:1.15;margin:0 0 16px}
+.lead{font-size:18px;opacity:0.95}
+.hero-ctas{display:flex;gap:12px;margin-top:18px;flex-wrap:wrap}
+.button-primary{background:var(--action-green);color:#fff;padding:14px 20px;border-radius:10px;font-family:"Montserrat",sans-serif;font-weight:700;text-transform:uppercase}
+.button-ghost{background:rgba(255,255,255,0.12);color:#fff;padding:12px 16px;border-radius:10px}
+
+/* Countdown */
+.countdown{display:flex;gap:12px;margin-top:22px}
+.countdown .unit{background:rgba(255,255,255,0.12);padding:12px 16px;border-radius:8px;min-width:64px;text-align:center;font-weight:700;font-family:"Montserrat",sans-serif}
+.count-labels{margin-top:8px;color:rgba(255,255,255,0.9)}
+
+/* Trust bar */
+.trust-bar{background:var(--section-bg);padding:12px 0}
+.trust-badge{height:56px}
+
+/* Sections */
+.section{padding:48px 0;background:var(--white)}
+.section.alt{background:var(--section-bg)}
+.section h2{font-family:"Montserrat",sans-serif;font-size:28px;margin:0 0 12px}
+.muted{color:var(--muted)}
+
+/* Comparison cards */
+.comp-table{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px}
+.comp-card{background:#fff;padding:18px;border-radius:10px;box-shadow:0 2px 6px rgba(0,0,0,0.04)}
+
+/* Pricing */
+.pricing{display:flex;gap:20px;align-items:stretch;flex-wrap:wrap}
+.table{flex:1;min-width:280px}
+.calculator{flex:1;min-width:260px;background:#fff;padding:18px;border-radius:10px;box-shadow:0 2px 6px rgba(0,0,0,0.04)}
+.slider{width:100%}
+
+/* Advantages */
+.advantages{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:18px}
+.adv{background:#fff;padding:18px;border-radius:10px;display:flex;gap:12px;align-items:flex-start;box-shadow:0 2px 6px rgba(0,0,0,0.04)}
+
+/* Specs */
+.specs-inner{display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap}
+.prod-img{width:100%;border-radius:8px}
+
+/* Testimonials */
+.testimonials{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-top:18px}
+.testimonial{background:#fff;padding:16px;border-radius:8px;max-width:320px;box-shadow:0 2px 6px rgba(0,0,0,0.04)}
+
+/* Urgency */
+.urgency{background:linear-gradient(90deg, rgba(220,53,69,0.08), rgba(255,107,53,0.04));padding:28px;border-radius:10px;text-align:center}
+.stock{font-weight:700;color:var(--warning-orange)}
+
+/* FAQ */
+.faq-item{background:#fff;padding:14px;border-radius:8px;margin-bottom:8px;cursor:pointer}
+.faq-item .answer{display:none;padding-top:8px;color:var(--muted)}
+.faq-item.open .answer{display:block}
+
+/* Form */
+.order-form{max-width:720px;margin-top:12px}
+.form-row{display:flex;gap:8px;flex-wrap:wrap}
+.form-row .col{flex:1;min-width:180px}
+input, select, textarea{width:100%;padding:10px;border:1px solid #e6e6e6;border-radius:6px;font-size:16px}
+.checkbox{display:flex;align-items:center;gap:8px}
+.mt{margin-top:12px}
+
+/* Footer */
+.site-footer{background:#212529;color:#fff;padding:28px 0}
+.site-footer a{color:#fff}
+
+/* Responsive */
+@media (max-width:991px){
+  .hero-inner{flex-direction:column;text-align:center}
+  .advantages{grid-template-columns:repeat(2,1fr)}
+  .sticky-header{height:56px}
+}
+@media (max-width:600px){
+  .advantages{grid-template-columns:1fr}
+  .comp-table{grid-template-columns:1fr}
+  .hero h1{font-size:28px}
+  .header-inner{padding:0 12px}
+}
+
+/* Fix CTA button overlapping text in calculator */
+.calc-cta {
+  margin-top: 20px;
+}
+
+/* Testimonial carousel */
+.testimonial-carousel {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.testimonial-track {
+  display: flex;
+  gap: 16px;
+  transition: transform 0.6s ease-in-out;
+}
+
+.testimonial-item {
+  min-width: calc((100% - 32px) / 3); /* 3 карточки на десктопе */
+  background: #fff;
+  padding: 16px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+/* Tablet – две карточки */
+@media (max-width: 900px) {
+  .testimonial-item {
+    min-width: calc((100% - 16px) / 2);
+  }
+}
+
+/* Mobile – одна карточка */
+@media (max-width: 600px) {
+  .testimonial-item {
+    min-width: 100%;
+  }
+}
+/* --- Testimonials Carousel with dots --- */
+
+.testimonials-section {
+  background: rgba(0, 0, 0, 0.03);
+  padding: 48px 0;
+  border-radius: 12px;
+}
+
+.testimonial-carousel {
+  overflow: hidden;
+  width: 100%;
+  margin-top: 20px;
+  position: relative;
+}
+
+.testimonial-track {
+  display: flex;
+  gap: 16px;
+  transition: transform 0.6s ease-in-out;
+}
+
+.testimonial-item {
+  min-width: calc((100% - 32px) / 3);
+  background: #fff;
+  padding: 18px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+@media (max-width: 900px) {
+  .testimonial-item {
+    min-width: calc((100% - 16px) / 2);
+  }
+}
+
+@media (max-width: 600px) {
+  .testimonial-item {
+    min-width: 100%;
+  }
+}
+
+/* Dots (pagination) */
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.carousel-dot {
+  width: 12px;
+  height: 12px;
+  background: #cfcfcf;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.carousel-dot.active {
+  background: var(--action-green);
+  transform: scale(1.2);
+}
+
+/* Fix checkbox alignment inside form */
+.checkbox label {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* расстояние между чекбоксом и текстом */
+}
+
+.checkbox input[type="checkbox"] {
+  margin: 0;  /* убираем дефолтные отступы браузера */
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
