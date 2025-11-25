@@ -8,10 +8,12 @@
   function pad(n){ return n<10? '0'+n : n; }
   // Use local timezone target: 3 Dec 2025 00:00:00 local
   var target = new Date(2025, 11, 3, 0, 0, 0); // month is 0-based: 11 -> December
+  
   function update(){
     var now = new Date();
     var diff = target - now;
     if(diff <= 0){
+      // Set all countdowns to 00
       document.querySelectorAll('.countdown .unit').forEach(function(u){ u.textContent = '00'; });
       document.querySelectorAll('.mini-timer').forEach(function(u){ u.textContent = '0 DNI 00:00:00'; });
       return;
@@ -21,19 +23,23 @@
     var mins = Math.floor((diff / (1000*60)) % 60);
     var secs = Math.floor((diff / 1000) % 60);
 
-    // update large units if exist
-    var units = document.querySelectorAll('.countdown .unit');
-    if(units.length >= 4){
-      units[0].textContent = pad(days);
-      units[1].textContent = pad(hours);
-      units[2].textContent = pad(mins);
-      units[3].textContent = pad(secs);
-    }
-    // update mini timer in header
+    // Update ALL countdown timers on the page
+    document.querySelectorAll('.countdown').forEach(function(countdownEl){
+      var units = countdownEl.querySelectorAll('.unit');
+      if(units.length >= 4){
+        units[0].textContent = pad(days);
+        units[1].textContent = pad(hours);
+        units[2].textContent = pad(mins);
+        units[3].textContent = pad(secs);
+      }
+    });
+    
+    // Update mini timer in header
     document.querySelectorAll('.mini-timer').forEach(function(el){
       el.textContent = days + ' DNI ' + pad(hours) + ':' + pad(mins) + ':' + pad(secs);
     });
   }
+  
   update();
   setInterval(update, 1000);
 })();
@@ -219,3 +225,91 @@ document.addEventListener('click', function(e){
   });
 
 })();
+
+
+// Animated gradient for urgency section on scroll
+(function() {
+  const urgencySection = document.querySelector('.urgency-new');
+  if (!urgencySection) return;
+
+  // Начальный и конечный градиенты
+  const startGradient = 'linear-gradient(135deg, #ff3333 0%, #cc0000 100%)';
+  const endGradient = 'linear-gradient(135deg, #ff6b35 0%, #cc0000 100%)'; // Более оранжевый
+
+  function updateGradient() {
+    const rect = urgencySection.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+    
+    // Рассчитываем, насколько секция видна в viewport
+    const sectionTop = rect.top;
+    const sectionHeight = rect.height;
+    
+    // Когда секция в центре экрана - 100% нового градиента
+    const triggerPoint = windowHeight * 0.3; // Начинаем изменять когда секция на 30% высоты экрана
+    
+    let progress = 0;
+    
+    if (sectionTop < triggerPoint && sectionTop > -sectionHeight) {
+      // Секция в зоне видимости - рассчитываем прогресс
+      progress = 1 - (sectionTop / (triggerPoint + sectionHeight));
+      progress = Math.max(0, Math.min(1, progress)); // Ограничиваем от 0 до 1
+    } else if (sectionTop <= -sectionHeight) {
+      // Секция полностью прокручена вверх - фиксируем конечный цвет
+      progress = 1;
+    }
+    
+    // Интерполяция между градиентами
+    if (progress > 0) {
+      // Создаем промежуточный градиент
+      const currentGradient = `linear-gradient(135deg, 
+        rgba(255, 107, 53, ${0.5 + progress * 0.5}) 0%, 
+        #cc0000 100%)`;
+      
+      urgencySection.style.background = currentGradient;
+      urgencySection.style.boxShadow = `0 10px 30px rgba(255, 107, 53, ${0.3 + progress * 0.2})`;
+    } else {
+      // Возвращаем начальный градиент
+      urgencySection.style.background = startGradient;
+      urgencySection.style.boxShadow = '0 10px 30px rgba(255, 0, 0, 0.3)';
+    }
+  }
+
+  // Оптимизация с помощью requestAnimationFrame
+  let ticking = false;
+  
+  function onScroll() {
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        updateGradient();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }
+
+  // Слушаем события скролла
+  window.addEventListener('scroll', onScroll);
+  window.addEventListener('resize', updateGradient);
+  
+  // Инициализация при загрузке
+  updateGradient();
+})();
+
+// Improved FAQ accordion
+document.addEventListener('click', function(e){
+  var question = e.target.closest('.faq-question');
+  if(question){
+    var faqItem = question.parentElement;
+    var isOpen = faqItem.classList.contains('open');
+    
+    // Close all other items
+    document.querySelectorAll('.faq-item.open').forEach(function(item){
+      if(item !== faqItem){
+        item.classList.remove('open');
+      }
+    });
+    
+    // Toggle current item
+    faqItem.classList.toggle('open', !isOpen);
+  }
+});
