@@ -321,7 +321,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
-// SEO Articles Carousel
+// SEO Articles Carousel - FIXED VERSION
 (function() {
   const track = document.querySelector('.seo-carousel-track');
   const articles = document.querySelectorAll('.seo-article');
@@ -335,9 +335,12 @@ document.addEventListener('DOMContentLoaded', function() {
   let currentIndex = 0;
   const totalArticles = articles.length;
   
+  // Initialize
   totalSlides.textContent = totalArticles;
+  updateCarousel();
   
   function updateCarousel() {
+    // Use translateX with percentage for smooth sliding
     track.style.transform = `translateX(-${currentIndex * 100}%)`;
     currentSlide.textContent = currentIndex + 1;
     
@@ -345,6 +348,9 @@ document.addEventListener('DOMContentLoaded', function() {
     articles.forEach((article, index) => {
       article.classList.toggle('active', index === currentIndex);
     });
+    
+    // Force reflow to fix rendering issues
+    void track.offsetWidth;
   }
   
   function goToSlide(index) {
@@ -373,6 +379,28 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
   
-  // Initialize
-  updateCarousel();
+  // Touch/swipe support for mobile
+  let startX = 0;
+  let currentX = 0;
+  
+  track.addEventListener('touchstart', function(e) {
+    startX = e.touches[0].clientX;
+  }, { passive: true });
+  
+  track.addEventListener('touchmove', function(e) {
+    currentX = e.touches[0].clientX;
+  }, { passive: true });
+  
+  track.addEventListener('touchend', function() {
+    const diff = startX - currentX;
+    const swipeThreshold = 50;
+    
+    if (Math.abs(diff) > swipeThreshold) {
+      if (diff > 0) {
+        nextSlide(); // Swipe left -> next
+      } else {
+        prevSlide(); // Swipe right -> previous
+      }
+    }
+  }, { passive: true });
 })();
