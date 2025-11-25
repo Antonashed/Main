@@ -651,3 +651,284 @@ input, select, textarea{width:100%;padding:10px;border:1px solid #e6e6e6;border-
     font-size: 1.3rem;
   }
 }
+
+/* ===== SEO ARTICLES CAROUSEL ===== */
+.seo-articles {
+  background: var(--section-bg);
+}
+
+.seo-carousel {
+  position: relative;
+  height: 600px;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  background: white;
+  margin: 2rem 0;
+}
+
+.seo-carousel-track {
+  display: flex;
+  height: 100%;
+  transition: transform 0.5s ease;
+}
+
+.seo-article {
+  flex: 0 0 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.article-header {
+  padding: 2rem 2rem 1rem;
+  border-bottom: 1px solid #e6e6e6;
+  background: white;
+}
+
+.article-header h1 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.8rem;
+  margin: 0 0 1rem;
+  color: var(--text-black);
+}
+
+.article-meta {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.article-content {
+  flex: 1;
+  padding: 0 2rem 2rem;
+  overflow-y: auto;
+  background: white;
+}
+
+.article-content h2 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.5rem;
+  margin: 1.5rem 0 1rem;
+  color: var(--text-black);
+}
+
+.article-content h3 {
+  font-size: 1.2rem;
+  margin: 1rem 0 0.5rem;
+  color: var(--text-black);
+}
+
+.article-content p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.article-content ul, .article-content ol {
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+}
+
+.article-content li {
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+}
+
+/* Comparison Grid */
+.comparison-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.comparison-item {
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.comparison-item.bad {
+  background: #ffe6e6;
+  border-left: 4px solid var(--urgency-red);
+}
+
+.comparison-item.good {
+  background: #e6ffe6;
+  border-left: 4px solid var(--action-green);
+}
+
+.comparison-item h3 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+/* Comparison Table */
+.comparison-table {
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+.comparison-table table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 500px;
+}
+
+.comparison-table th, .comparison-table td {
+  border: 1px solid #ddd;
+  padding: 0.75rem;
+  text-align: left;
+}
+
+.comparison-table th {
+  background: #f5f5f5;
+  font-weight: 600;
+}
+
+/* Lists */
+.benefit-list, .warning-list {
+  margin: 1rem 0;
+}
+
+.benefit-item, .warning-item {
+  padding: 0.5rem 0;
+  font-weight: 500;
+}
+
+.benefit-item {
+  color: var(--action-green);
+}
+
+.warning-item {
+  color: var(--urgency-red);
+}
+
+/* Carousel Navigation */
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--action-green);
+  color: white;
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.carousel-arrow:hover {
+  background: var(--urgency-red);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-prev {
+  left: 1rem;
+}
+
+.carousel-next {
+  right: 1rem;
+}
+
+.carousel-indicator {
+  text-align: center;
+  margin-top: 1rem;
+  font-weight: bold;
+  color: var(--text-black);
+}
+
+/* Article CTA */
+.article-cta {
+  text-align: center;
+  margin: 2rem 0;
+  padding-top: 1rem;
+  border-top: 1px solid #e6e6e6;
+}
+
+.article-sources {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e6e6e6;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.article-sources h3 {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.article-sources ol {
+  padding-left: 1.5rem;
+}
+
+.article-sources li {
+  margin-bottom: 0.3rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .seo-carousel {
+    height: 500px;
+  }
+  
+  .article-header {
+    padding: 1.5rem 1.5rem 1rem;
+  }
+  
+  .article-header h1 {
+    font-size: 1.5rem;
+  }
+  
+  .article-content {
+    padding: 0 1.5rem 1.5rem;
+  }
+  
+  .comparison-grid {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+  
+  .carousel-arrow {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+  
+  .carousel-prev {
+    left: 0.5rem;
+  }
+  
+  .carousel-next {
+    right: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .seo-carousel {
+    height: 400px;
+  }
+  
+  .article-header {
+    padding: 1rem 1rem 0.5rem;
+  }
+  
+  .article-header h1 {
+    font-size: 1.3rem;
+  }
+  
+  .article-content {
+    padding: 0 1rem 1rem;
+  }
+  
+  .article-content h2 {
+    font-size: 1.3rem;
+  }
+}
