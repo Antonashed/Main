@@ -5,6 +5,48 @@
 /* Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Open+Sans:wght@400;600&display=swap');
 
+/* TEMPORARY FIXES FOR BROKEN LAYOUT */
+.urgency-new {
+  background: linear-gradient(135deg, #ff3333 0%, #cc0000 100%) !important;
+}
+
+.urgency-countdown {
+  display: flex !important;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
+
+.urgency-countdown .unit {
+  font-size: 3.5rem;
+  font-weight: 900;
+  font-family: 'Courier New', monospace;
+  background: rgba(0,0,0,0.2);
+  padding: 1rem;
+  border-radius: 10px;
+  margin: 0 0.5rem;
+  min-width: 100px;
+  letter-spacing: 3px;
+  color: white;
+}
+
+/* Ensure FAQ works */
+.faq-item.open .faq-answer {
+  max-height: 1000px !important;
+  padding: 1.5rem !important;
+}
+
+.faq-item.open .faq-toggle {
+  transform: rotate(45deg);
+  color: #DC3545;
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
 :root{
   --action-green: #28A745;
   --urgency-red: #DC3545;

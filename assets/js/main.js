@@ -295,21 +295,28 @@ document.addEventListener('click', function(e){
   updateGradient();
 })();
 
-// Improved FAQ accordion
-document.addEventListener('click', function(e){
-  var question = e.target.closest('.faq-question');
-  if(question){
-    var faqItem = question.parentElement;
-    var isOpen = faqItem.classList.contains('open');
+// Fixed FAQ accordion
+document.addEventListener('DOMContentLoaded', function() {
+  const faqItems = document.querySelectorAll('.faq-item');
+  
+  faqItems.forEach(item => {
+    const question = item.querySelector('.faq-question');
+    const answer = item.querySelector('.faq-answer');
     
-    // Close all other items
-    document.querySelectorAll('.faq-item.open').forEach(function(item){
-      if(item !== faqItem){
-        item.classList.remove('open');
+    question.addEventListener('click', function() {
+      const isOpen = item.classList.contains('open');
+      
+      // Close all items
+      faqItems.forEach(otherItem => {
+        otherItem.classList.remove('open');
+        otherItem.querySelector('.faq-answer').style.maxHeight = '0';
+      });
+      
+      // If clicked item wasn't open, open it
+      if (!isOpen) {
+        item.classList.add('open');
+        answer.style.maxHeight = answer.scrollHeight + 'px';
       }
     });
-    
-    // Toggle current item
-    faqItem.classList.toggle('open', !isOpen);
-  }
+  });
 });
